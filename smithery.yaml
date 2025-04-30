@@ -1,0 +1,23 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: LunarCrush API key to authenticate requests
+      baseUrl:
+        type: string
+        description: Optional override for the LunarCrush API base URL
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => { const args = []; args.push('--api-key', config.apiKey); if (config.baseUrl) args.push('--base-url', config.baseUrl); return { command: 'node', args: ['scripts/cli.cjs', ...args] }; }
+  exampleConfig:
+    apiKey: YOUR_API_KEY_HERE
+    baseUrl: https://enterprise.lunarcrush.com/api
