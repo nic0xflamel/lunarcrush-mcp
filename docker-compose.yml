@@ -1,5 +1,5 @@
 services:
-  coingecko-mcp-server:
+  lunarcrush-mcp-server:
     build: .
     stdin_open: true
     tty: true
