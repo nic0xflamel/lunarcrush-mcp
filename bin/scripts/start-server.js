@@ -30,12 +30,14 @@ export async function startServer(args = process.argv.slice(2)) {
     const directory = path.dirname(filename);
     const specPath = path.resolve(directory, '../../specs/lunarcrush_openapi_v3.json');
     // // console.log(`[MCP Server Log] Calculated specPath: ${specPath}`); // Removed log
-    const cliArgs = parseArgs(args);
-    const baseUrl = cliArgs['base-url'] ?? process.env.BASE_URL ?? undefined;
+    // Remove baseUrl parsing and reading logic
+    // const cliArgs = parseArgs(args);
+    // const baseUrl = cliArgs['base-url'] ?? process.env.BASE_URL ?? undefined
     // // console.log(`[MCP Server Log] Determined baseUrl: ${baseUrl ?? 'undefined'}`); // Removed log
     try {
         // // console.log('[MCP Server Log] Initializing MCPProxy...'); // Removed log
-        const proxy = await initProxy(specPath, baseUrl);
+        // Remove baseUrl from the initProxy call
+        const proxy = await initProxy(specPath);
         // // console.log('[MCP Server Log] MCPProxy initialized successfully.'); // Removed log
         // // console.log('[MCP Server Log] Connecting transport...'); // Removed log
         await proxy.connect(new StdioServerTransport());

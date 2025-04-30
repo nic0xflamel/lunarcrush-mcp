@@ -15,8 +15,8 @@ export class ValidationError extends Error {
   }
 }
 
-async function loadOpenApiSpec(specPath: string, baseUrl: string | undefined): Promise<OpenAPIV3.Document> {
-  // console.log(`[MCP Server Log] loadOpenApiSpec called with path: ${specPath}, baseUrl: ${baseUrl ?? 'undefined'}`);
+async function loadOpenApiSpec(specPath: string): Promise<OpenAPIV3.Document> {
+  // console.log(`[MCP Server Log] loadOpenApiSpec called with path: ${specPath}`);
   let rawSpec: string
 
   try {
@@ -35,17 +35,7 @@ async function loadOpenApiSpec(specPath: string, baseUrl: string | undefined): P
     const parsed = JSON.parse(rawSpec)
     console.log('[MCP Server Log] JSON parsed successfully.');
 
-    // Override baseUrl if specified.
-    if (baseUrl) {
-      console.log(`[MCP Server Log] Overriding baseUrl in spec to: ${baseUrl}`);
-      if (parsed.servers && parsed.servers[0]) {
-      parsed.servers[0].url = baseUrl
-      } else {
-        console.warn('[MCP Server Log] Cannot override baseUrl: spec.servers[0] is not defined.');
-      }
-    }
-
-    console.log('[MCP Server Log] Spec loaded and potentially modified.');
+    console.log('[MCP Server Log] Spec loaded.');
     return parsed as OpenAPIV3.Document
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -57,10 +47,10 @@ async function loadOpenApiSpec(specPath: string, baseUrl: string | undefined): P
   }
 }
 
-export async function initProxy(specPath: string, baseUrl: string |undefined) {
+export async function initProxy(specPath: string) {
   console.log('[MCP Server Log] initProxy called.');
   console.log('[MCP Server Log] Loading OpenAPI spec...');
-  const openApiSpec = await loadOpenApiSpec(specPath, baseUrl)
+  const openApiSpec = await loadOpenApiSpec(specPath)
   console.log('[MCP Server Log] OpenAPI spec loaded, creating MCPProxy instance...');
   const proxy = new MCPProxy('LunarCrush API', openApiSpec)
   console.log('[MCP Server Log] MCPProxy instance created.');

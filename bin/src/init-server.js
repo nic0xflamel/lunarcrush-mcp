@@ -8,8 +8,8 @@ export class ValidationError extends Error {
         this.name = 'ValidationError';
     }
 }
-async function loadOpenApiSpec(specPath, baseUrl) {
-    // console.log(`[MCP Server Log] loadOpenApiSpec called with path: ${specPath}, baseUrl: ${baseUrl ?? 'undefined'}`);
+async function loadOpenApiSpec(specPath) {
+    // console.log(`[MCP Server Log] loadOpenApiSpec called with path: ${specPath}`);
     let rawSpec;
     try {
         // console.log(`[MCP Server Log] Attempting to read spec file at: ${specPath}`);
@@ -26,17 +26,7 @@ async function loadOpenApiSpec(specPath, baseUrl) {
         console.log('[MCP Server Log] Parsing JSON spec...');
         const parsed = JSON.parse(rawSpec);
         console.log('[MCP Server Log] JSON parsed successfully.');
-        // Override baseUrl if specified.
-        if (baseUrl) {
-            console.log(`[MCP Server Log] Overriding baseUrl in spec to: ${baseUrl}`);
-            if (parsed.servers && parsed.servers[0]) {
-                parsed.servers[0].url = baseUrl;
-            }
-            else {
-                console.warn('[MCP Server Log] Cannot override baseUrl: spec.servers[0] is not defined.');
-            }
-        }
-        console.log('[MCP Server Log] Spec loaded and potentially modified.');
+        console.log('[MCP Server Log] Spec loaded.');
         return parsed;
     }
     catch (error) {
@@ -48,10 +38,10 @@ async function loadOpenApiSpec(specPath, baseUrl) {
         process.exit(1);
     }
 }
-export async function initProxy(specPath, baseUrl) {
+export async function initProxy(specPath) {
     console.log('[MCP Server Log] initProxy called.');
     console.log('[MCP Server Log] Loading OpenAPI spec...');
-    const openApiSpec = await loadOpenApiSpec(specPath, baseUrl);
+    const openApiSpec = await loadOpenApiSpec(specPath);
     console.log('[MCP Server Log] OpenAPI spec loaded, creating MCPProxy instance...');
     const proxy = new MCPProxy('LunarCrush API', openApiSpec);
     console.log('[MCP Server Log] MCPProxy instance created.');
