@@ -1,0 +1,42 @@
+# Source files
+src/
+
+# Build artifacts (if not explicitly included in 'files' array)
+# bin/  <- Included via 'files'
+# dist/
+
+# Scripts (except the one in 'bin' field or 'files' array)
+scripts/
+!scripts/cli.cjs
+
+# Config files
+test/
+*.test.ts
+*.spec.ts
+__tests__/
+coverage/
+tsconfig.json
+tsconfig.*.json
+.prettierrc*
+.eslintrc*
+.eslintcache
+smithery.yaml
+Dockerfile*
+docker-compose.yml
+
+# Logs & Env
+*.log
+server-stderr.log
+.env*
+!\.env.example
+
+# Git/OS files
+.git
+.gitignore
+.DS_Store
+
+# Test coverage
+coverage/
+
+# Docs
+docs/ 
