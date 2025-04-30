@@ -1,0 +1,32 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required: []
+    properties:
+      # Allow setting API key via config, though env var is preferred
+      apiKey: {
+        type: string,
+        description: "LunarCrush API Key (optional, overrides LUNARCRUSH_API_KEY env var)"
+      }
+  commandFunction:
+    # Produces the CLI command to start the MCP server.
+    |-
+    (config) => {
+      // Use npx to reliably execute the package binary
+      const args = ['-y', '@nic0xflamel/lunarcrush-mcp-server'];
+      const env = {};
+      // Pass apiKey from config to environment variable if provided,
+      // as the cli.cjs script reads the env var.
+      if (config.apiKey) {
+        env.LUNARCRUSH_API_KEY = config.apiKey;
+      }
+      // Alternatively, if cli.cjs primarily used args:
+      // if (config.apiKey) {
+      //   args.push('--api-key', config.apiKey);
+      // }
+      return { command: 'npx', args, env };
+    }

@@ -1,0 +1,39 @@
+--- Server started at 2025-04-30T11:56:37.707Z ---
+--- Server started at 2025-04-30T11:56:45.930Z ---
+--- Server started at 2025-04-30T11:56:45.982Z ---
+--- Server started at 2025-04-30T12:11:25.412Z ---
+--- Server started at 2025-04-30T12:11:26.981Z ---
+--- Server started at 2025-04-30T12:11:27.797Z ---
+[MCP Server Log] Error during API call for GET /public/topic/bitcoin/news/v1: Request failed with status code 400
+[MCP Server Log] API Error Response Status: 400
+[MCP Server Log] API Error Response Headers: {"date":"Wed, 30 Apr 2025 12:16:20 GMT","content-type":"application/json","transfer-encoding":"chunked","connection":"keep-alive","cf-ray":"9386f83f8e54b747-BRU","cf-cache-status":"DYNAMIC","access-control-allow-origin":"*","cf-placement":"remote-YYZ","x-rate-limit-day":"1002000","x-rate-limit-day-remaining":"1001918","x-rate-limit-day-reset":"1746057600","x-rate-limit-minute":"4010","x-rate-limit-minute-remaining":"4009","x-rate-limit-minute-reset":"1746015420","vary":"Accept-Encoding","server":"cloudflare"}
+[MCP Server Log] API Error Response Data: {"error":"Error: Invalid input parameter: explanation"}
+[MCP Server Log] Error during tools/call execution for API-get_public_topic_topic_news_v1: HttpClientError: 400 Bad Request
+    at HttpClient.executeOperation (file:///Users/adrianobradley/notion-automation/lunarcrush-mcp-server/bin/src/openapi-mcp-server/client/http-client.js:220:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async file:///Users/adrianobradley/notion-automation/lunarcrush-mcp-server/bin/src/openapi-mcp-server/mcp/proxy.js:74:34 {
+  status: 400,
+  data: { error: 'Error: Invalid input parameter: explanation' },
+  headers: Headers {
+    date: 'Wed, 30 Apr 2025 12:16:20 GMT',
+    'content-type': 'application/json',
+    'transfer-encoding': 'chunked',
+    connection: 'keep-alive',
+    'cf-ray': '9386f83f8e54b747-BRU',
+    'cf-cache-status': 'DYNAMIC',
+    'access-control-allow-origin': '*',
+    'cf-placement': 'remote-YYZ',
+    'x-rate-limit-day': '1002000',
+    'x-rate-limit-day-remaining': '1001918',
+    'x-rate-limit-day-reset': '1746057600',
+    'x-rate-limit-minute': '4010',
+    'x-rate-limit-minute-remaining': '4009',
+    'x-rate-limit-minute-reset': '1746015420',
+    vary: 'Accept-Encoding',
+    server: 'cloudflare'
+  }
+}
+[MCP Server Log] HttpClientError details - Status: 400, Data: {"error":"Error: Invalid input parameter: explanation"}
+--- Server started at 2025-04-30T12:21:17.349Z ---
+--- Server started at 2025-04-30T12:21:21.547Z ---
+--- Server started at 2025-04-30T12:21:21.585Z ---

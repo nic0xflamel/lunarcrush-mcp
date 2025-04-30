@@ -1,0 +1,1357 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "LunarCrush API v4 overview",
+    "version": "4.0.0"
+  },
+  "servers": [
+    {
+    "url": "https://lunarcrush.com/api4"
+    }
+  ],
+  "paths": {
+    "/public/categories/list/v1": {
+      "get": {
+        "description": "Get a list of trending social categories.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/public/category/:category/creators/v1": {
+      "get": {
+        "description": "Get the top creators for a social category",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/category/:category/news/v1": {
+      "get": {
+        "description": "Get the top news posts for a category. Top news is determined by the metrics related to the social posts that mention the news posts.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/category/:category/posts/v1": {
+      "get": {
+        "description": "Get the top posts for a social topic. If start time is provided the result will be the top posts by interactions for the time range. If start is not provided it will be the most recent top posts by interactions from the last 24 hours.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/category/:category/time-series/v1": {
+      "get": {
+        "description": "Get historical time series data for a social category",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bucket",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/category/:category/topics/v1": {
+      "get": {
+        "description": "Get the top topics for a social category",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/category/:category/v1": {
+      "get": {
+        "description": "Get summary information for a social category",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/coins/:coin/meta/v1": {
+      "get": {
+        "description": "Get meta information for a cryptocurrency project. This includes information such as the website, social media links, and other information.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "coin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/coins/:coin/time-series/v2": {
+      "get": {
+        "description": "Get market time series data on a coin or token. Specify the coin to be queried by providing the numeric ID or the symbol of the coin in the input parameter, which can be found by calling the /coins/list endpoint.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "coin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bucket",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/coins/:coin/v1": {
+      "get": {
+        "description": "Get market data on a coin or token. Specify the coin to be queried by providing the numeric ID or the symbol of the coin in the input parameter, which can be found by calling the /coins/list endpoint.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "coin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/coins/list/v1": {
+      "get": {
+        "description": "Get a general snapshot of LunarCrush metrics on the entire list of tracked coins. This version is heavily cached and up to 1 hour behind. It is designed as a lightweight mechanism for monitoring the universe of available assets, either in aggregate or relative to each other. Metrics include Galaxy Score™, AltRank™, price, volatility, 24h percent change, market cap, social mentions, social interactions, social contributors, social dominance, and categories. Use the coins/list/v2 endpoint for data updated every few seconds.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          }
+        ]
+      }
+    },
+    "/public/coins/list/v2": {
+      "get": {
+        "description": "Get a general snapshot of LunarCrush metrics on the entire list of tracked coins. It is designed as a lightweight mechanism for monitoring the universe of available assets, either in aggregate or relative to each other. Metrics include Galaxy Score™, AltRank™, price, volatility, 24h percent change, market cap, social mentions, social interactions, social contributors, social dominance, and categories.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          }
+        ]
+      }
+    },
+    "/public/creator/:network/:id/posts/v1": {
+      "get": {
+        "description": "Get the top posts for a specific creator.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "network",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/creator/:network/:id/time-series/v1": {
+      "get": {
+        "description": "Get time series data on a creator.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "network",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bucket",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/creator/:network/:id/v1": {
+      "get": {
+        "description": "Get detail information on a specific creator",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "network",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/creators/list/v1": {
+      "get": {
+        "description": "Get a list of trending social creators over all of social based on interactions. To get lists of creators by category or topic see the topics and categories endpoints.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/public/nfts/:nft/time-series/v1": {
+      "get": {
+        "description": "Get market time series data on an nft collection. Specify the nft to be queried by providing the numeric ID or slug of the nft collection in the input parameter, which can be found by calling the /public/nfts/list endpoint.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "nft",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/nfts/:nft/time-series/v2": {
+      "get": {
+        "description": "Get market time series data on a nft. Specify the nft to be queried by providing the numeric ID or the symbol of the nft in the input parameter, which can be found by calling the /nfts/list endpoint.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "nft",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bucket",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/nfts/:nft/v1": {
+      "get": {
+        "description": "Get market data on an nft collection. Specify the nft to be queried by providing the numeric ID or the slug of the nft in the input parameter, which can be found by calling the /public/nfts/list endpoint.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "nft",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/nfts/list/v1": {
+      "get": {
+        "description": "Lists all nft collections supported by LunarCrush. Includes the \"topic\" endpoint to use to get social data from this nft collection as a social topic.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/public/nfts/list/v2": {
+      "get": {
+        "description": "Get a general snapshot of LunarCrush metrics on the entire list of tracked NFTS. It is designed as a lightweight mechanism for monitoring the universe of available assets, either in aggregate or relative to each other. Metrics include Galaxy Score™, AltRank™, floor price, 24h percent change, market cap, social mentions, social interactions, social contributors, social dominance, and categories.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          }
+        ]
+      }
+    },
+    "/public/posts/:post_type/:post_id/time-series/v1": {
+      "get": {
+        "description": "Get interactions over time for a post. If a post is older than 365 days the time series will be returned as daily interactions, otherwise it hourly interactions",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "post_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "post_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/posts/:post_type/:post_id/v1": {
+      "get": {
+        "description": "Get details of a post",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "post_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "post_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/searches/:slug": {
+      "get": {
+        "description": "See the summary output of a custom search aggregation.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/searches/:slug/delete": {
+      "get": {
+        "description": "Delete a custom search aggregations.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/searches/:slug/update": {
+      "get": {
+        "description": "Update a custom search aggregation name or priority. Search terms and configuration cannot be changed once created.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search_json",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "priority",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/public/searches/create": {
+      "get": {
+        "description": "Create a custom search aggregation of topics and search terms. Fine tune the posts that get included or excluded. Search terms and configuration cannot be changed once created. If successful returns the new id/slug and the processed search config. Note that search terms will be adjusted and simplified for optimized search and matching.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search_json",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "priority",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/public/searches/list": {
+      "get": {
+        "description": "List all custom search aggregations.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/public/searches/search": {
+      "get": {
+        "description": "Get recently popular social posts matching a single search term or phrase. Optionally configure and test a custom search configuration.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "term",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search_json",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/stocks/:stock/time-series/v2": {
+      "get": {
+        "description": "Get market time series data on a stock. Specify the stock to be queried by providing the numeric ID or the symbol of the stock in the input parameter, which can be found by calling the /stocks/list endpoint.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "stock",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bucket",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/stocks/:stock/v1": {
+      "get": {
+        "description": "Get market data on a stock. Specify the coin to be queried by providing the numeric ID or the symbol of the coin in the input parameter, which can be found by calling the /coins/list endpoint.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "stock",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/stocks/list/v1": {
+      "get": {
+        "description": "Lists all stocks supported by LunarCrush. Includes the \"topic\" endpoint to use to get social data from this asset as a social topic.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/public/stocks/list/v2": {
+      "get": {
+        "description": "Get a general snapshot of LunarCrush metrics on the entire list of tracked stocks. It is designed as a lightweight mechanism for monitoring the universe of available assets, either in aggregate or relative to each other. Metrics include Galaxy Score™, AltRank™, floor price, 24h percent change, market cap, social mentions, social interactions, social contributors, social dominance, and categories.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          }
+        ]
+      }
+    },
+    "/public/system/changes": {
+      "get": {
+        "description": "Updates to potential changes to historical time series data. Search term changes only impact the most recent 72 hours (hourly) or 3 days (daily) data. \"full historical\" is a change that may impact the full history of data. Each change provides a description of what is impacted and why.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/public/topic/:topic/creators/v1": {
+      "get": {
+        "description": "Get the top creators for a social topic",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/topic/:topic/news/v1": {
+      "get": {
+        "description": "Get the top news posts for a social topic. Top news is determined by the metrics related to the social posts that mention the news posts.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/topic/:topic/posts/v1": {
+      "get": {
+        "description": "Get the top posts for a social topic. If start time is provided the result will be the top posts by interactions for the time range. If start is not provided it will be the most recent top posts by interactions from the last 24 hours.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/topic/:topic/time-series/v1": {
+      "get": {
+        "description": "Get historical time series data for a social topic",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bucket",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "timestamp"
+            }
+          }
+        ]
+      }
+    },
+    "/public/topic/:topic/time-series/v2": {
+      "get": {
+        "description": "Get historical time series data for a social topic",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bucket",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/topic/:topic/v1": {
+      "get": {
+        "description": "Get summary information for a social topic. The output is a 24 hour aggregation social activity with metrics comparing the latest 24 hours to the previous 24 hours.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/topic/:topic/whatsup/v1": {
+      "get": {
+        "description": "Generate an AI summary of the hottest news and social posts for a specific topic",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/public/topics/list/v1": {
+      "get": {
+        "description": "Get a list of trending social topics.",
+        "responses": {
+          "200": {
+            "description": "200 successful",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "parameters": []
+      }
+    }
+  }
+}
