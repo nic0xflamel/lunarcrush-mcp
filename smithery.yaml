@@ -11,9 +11,6 @@ startCommand:
       apiKey:
         type: string
         description: LunarCrush API key for authentication
-      baseUrl:
-        type: string
-        description: Optional base URL for the LunarCrush API (defaults to spec)
   commandFunction:
     # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
     |-
